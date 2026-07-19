@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, AnimatePresence } from "framer-motion"
 import { projects } from "@/data/projects"
 import { Project } from "@/types"
 import ProjectCard from "./ProjectCard"
@@ -66,14 +66,24 @@ export default function Projects() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project, i) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={i}
-              onSelect={setSelectedProject}
-            />
-          ))}
+          <AnimatePresence mode="popLayout">
+            {filtered.map((project, i) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ProjectCard
+                  project={project}
+                  index={i}
+                  onSelect={setSelectedProject}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
         {filtered.length === 0 && (
