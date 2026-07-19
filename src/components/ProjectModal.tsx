@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { useEffect } from "react"
 import { Project } from "@/types"
@@ -58,9 +59,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </button>
             </div>
 
-            <div className="aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg mb-4 flex items-center justify-center text-gray-400 overflow-hidden">
+            <div className="relative aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg mb-4 flex items-center justify-center text-gray-400 overflow-hidden">
               {project.image ? (
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                <Image src={project.image} alt={project.title} fill className="object-cover" sizes="500px" />
               ) : (
                 <ImagePlaceholder />
               )}

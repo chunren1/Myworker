@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 
 export default function Hero() {
@@ -21,9 +22,11 @@ export default function Hero() {
           transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
           className="w-28 h-28 mx-auto mb-8 rounded-full overflow-hidden border-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800"
         >
-          <img
+          <Image
             src="/images/vibe-logo.png"
             alt="陈永康"
+            width={112}
+            height={112}
             className="w-full h-full object-cover"
           />
         </motion.div>
